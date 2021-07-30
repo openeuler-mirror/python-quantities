@@ -2,7 +2,7 @@
 
 Name:       python-%{module_name}
 Version:    0.12.3
-Release:    1
+Release:    2
 Summary:    Support for physical quantities with units, based on numpy
 
 License:    BSD
@@ -12,7 +12,6 @@ Source0:    https://files.pythonhosted.org/packages/89/44/a875b723f70935b022d6b7
 
 Source1:    license.rst
 
-BuildRequires: git-core
 
 BuildArch:      noarch
 
@@ -39,7 +38,7 @@ Requires:       python3-numpy
 %description -n python3-%{module_name} %_description
 
 %prep
-%autosetup -n %{module_name}-%{version} -S git
+%autosetup -n %{module_name}-%{version} -p1
 cp %{SOURCE1} .
 
 %build
@@ -58,6 +57,9 @@ cp %{SOURCE1} .
 
 
 %changelog
+* Fri Jul 30 2021 chenyanpanHW <chenyanpan@huawei.com> - 0.12.3-2
+- DESC: delete -S git from %autosetup, and delete BuildRequires git-core
+
 
 * Tue July 06 2021 duyiwei<duyiwei@kylinos.cn> 0.12.3-1
 - Init package
