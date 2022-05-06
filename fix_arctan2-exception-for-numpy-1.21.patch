@@ -1,0 +1,24 @@
+From 5ff612462735adb3d063e46de90f0ca11c6ec5d9 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Micha=C5=82=20G=C3=B3rny?= <mgorny@gentoo.org>
+Date: Tue, 17 Aug 2021 08:24:07 +0200
+Subject: [PATCH] fix expected np.arctan2() exception for numpy 1.21
+
+NumPy 1.21 has changed the exception type for incorrect np.arctan2()
+arguments from ValueError to TypeError.  Adjust the test appropriately.
+
+Fixes #190
+---
+ quantities/tests/test_umath.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/quantities/tests/test_umath.py	2019-02-22 15:36:24.000000000 +0800
++++ b/quantities/tests/test_umath.py	2022-05-25 11:13:50.215888200 +0800
+@@ -222,7 +222,7 @@
+             np.arctan2(0*pq.dimensionless, 0*pq.dimensionless),
+             0
+             )
+-        self.assertRaises(ValueError, np.arctan2, (1*pq.m, 1*pq.m))
++        self.assertRaises((TypeError, ValueError), np.arctan2, (1*pq.m, 1*pq.m))
+ 
+     def test_hypot(self):
+         self.assertQuantityEqual(np.hypot(3 * pq.m, 4 * pq.m),  5 * pq.m)

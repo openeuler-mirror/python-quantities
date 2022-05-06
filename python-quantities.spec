@@ -2,7 +2,7 @@
 
 Name:       python-%{module_name}
 Version:    0.12.3
-Release:    2
+Release:    3
 Summary:    Support for physical quantities with units, based on numpy
 
 License:    BSD
@@ -11,7 +11,8 @@ URL:        https://pypi.org/project/quantities/
 Source0:    https://files.pythonhosted.org/packages/89/44/a875b723f70935b022d6b7a02c12a020e3b1777aa7bfc6fc243a908bc650/%{module_name}-%{version}.tar.gz
 
 Source1:    license.rst
-
+Patch0:    fix_arctan2-exception-for-numpy-1.21.patch
+Patch1:    Fix-ufunc-clip-not-supported-error.patch
 
 BuildArch:      noarch
 
@@ -57,6 +58,9 @@ cp %{SOURCE1} .
 
 
 %changelog
+* Tue May 31 2022 lvxiaoqian <xiaoqian@nj.iscas.ac.cn> - 0.12.3-3
+- add patch to fix build issue
+
 * Fri Jul 30 2021 chenyanpanHW <chenyanpan@huawei.com> - 0.12.3-2
 - DESC: delete -S git from %autosetup, and delete BuildRequires git-core
 
